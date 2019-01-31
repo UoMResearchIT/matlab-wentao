@@ -1,0 +1,235 @@
+clear
+clc
+
+n1 = 56;
+n2 = 88;
+
+
+mean1 = 0.8;
+stddev1 = 0.8/30;
+
+mean2 = 0.6;
+stddev2 = 0.02;
+
+mean3 = 0.4;
+stddev3 = 0.4/30;
+
+mean4 = 0.2;
+stddev4 = 0.2/30;
+
+mean5 = 0.1;
+stddev5 = 0.1/30;
+
+%Mesh Topology
+source = [1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	59	59	60	60	78	78	80	80	64	64	89	89	106	106	63	63	81	81	108	108	102	102	103	103	110	110	111	111	97	97	100	100	101	101	112	112	68	68	69	69	109	109	91	91	92	92	107	107	61	61	77	77	79	79	70	70	57	57	58	58	73	73	76	76	66	66	67	67	83	83	85	85	86	86	88	88	62	62	65	65	82	82	84	84	87	87	90	90	93	93	94	94	104	104	105	105	95	95	96	96	98	98	99	99	72	72	74	74	75	75	71	71	113	113	114	115	116	116	116	116	117	117	117	117	117	117	117	118	118	119	119	119	120	120	120	121	121	122	123	123	125	126	131	133	135	135	135	136	138	139	140	129	113	114	115	116	117	118	119	120	121	122	123	124	133	143];
+target = [57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	101	102	103	104	105	106	107	108	109	110	111	112	115	126	115	126	115	126	115	126	119	131	119	131	119	131	118	127	118	127	118	127	140	141	140	141	140	141	140	141	138	139	138	139	138	139	138	139	121	122	121	122	121	122	133	134	133	134	133	134	116	125	116	125	116	125	121	122	113	114	113	114	113	114	113	114	120	129	120	129	120	129	129	130	129	130	129	130	117	128	117	128	117	128	128	132	128	132	128	132	135	142	135	142	135	142	135	142	136	137	136	137	136	137	136	137	123	124	123	124	123	124	123	124	114	125	126	126	117	125	126	128	121	128	129	132	133	134	135	119	127	123	131	134	129	130	134	122	131	123	124	141	126	127	134	134	137	138	142	137	139	140	141	143	143	143	143	143	143	144	144	144	144	144	144	144	144	144];
+NodeNames = {'EPS Node 1'	'EPS Node 2'	'EPS Node 3'	'EPS Node 4'	'EPS Node 5'	'EPS Node 6'	'EPS Node 7'	'EPS Node 8'	'EPS Node 9'	'EPS Node 10'	'EPS Node 11'	'EPS Node 12'	'EPS Node 13'	'EPS Node 14'	'EPS Node 15'	'EPS Node 16'	'EPS Node 17'	'EPS Node 18'	'EPS Node 19'	'EPS Node 20'	'EPS Node 21'	'EPS Node 22'	'EPS Node 23'	'EPS Node 24'	'EPS Node 25'	'EPS Node 26'	'EPS Node 27'	'EPS Node 28'	'EPS Node 29'	'EPS Node 30'	'EPS Node 31'	'EPS Node 32'	'EPS Node 33'	'EPS Node 34'	'EPS Node 35'	'EPS Node 36'	'EPS Node 37'	'EPS Node 38'	'EPS Node 39'	'EPS Node 40'	'EPS Node 41'	'EPS Node 42'	'EPS Node 43'	'EPS Node 44'	'EPS Node 45'	'EPS Node 46'	'EPS Node 47'	'EPS Node 48'	'EPS Node 49'	'EPS Node 50'	'EPS Node 51'	'EPS Node 52'	'EPS Node 53'	'EPS Node 54'	'EPS Node 55'	'EPS Node 56'	'ICT Node 57'	'ICT Node 58'	'ICT Node 59'	'ICT Node 60'	'ICT Node 61'	'ICT Node 62'	'ICT Node 63'	'ICT Node 64'	'ICT Node 65'	'ICT Node 66'	'ICT Node 67'	'ICT Node 68'	'ICT Node 69'	'ICT Node 70'	'ICT Node 71'	'ICT Node 72'	'ICT Node 73'	'ICT Node 74'	'ICT Node 75'	'ICT Node 76'	'ICT Node 77'	'ICT Node 78'	'ICT Node 79'	'ICT Node 80'	'ICT Node 81'	'ICT Node 82'	'ICT Node 83'	'ICT Node 84'	'ICT Node 85'	'ICT Node 86'	'ICT Node 87'	'ICT Node 88'	'ICT Node 89'	'ICT Node 90'	'ICT Node 91'	'ICT Node 92'	'ICT Node 93'	'ICT Node 94'	'ICT Node 95'	'ICT Node 96'	'ICT Node 97'	'ICT Node 98'	'ICT Node 99'	'ICT Node 100'	'ICT Node 101'	'ICT Node 102'	'ICT Node 103'	'ICT Node 104'	'ICT Node 105'	'ICT Node 106'	'ICT Node 107'	'ICT Node 108'	'ICT Node 109'	'ICT Node 110'	'ICT Node 111'	'ICT Node 112'	'ICT Node 113'	'ICT Node 114'	'ICT Node 115'	'ICT Node 116'	'ICT Node 117'	'ICT Node 118'	'ICT Node 119'	'ICT Node 120'	'ICT Node 121'	'ICT Node 122'	'ICT Node 123'	'ICT Node 124'	'ICT Node 125'	'ICT Node 126'	'ICT Node 127'	'ICT Node 128'	'ICT Node 129'	'ICT Node 130'	'ICT Node 131'	'ICT Node 132'	'ICT Node 133'	'ICT Node 134'	'ICT Node 135'	'ICT Node 136'	'ICT Node 137'	'ICT Node 138'	'ICT Node 139'	'ICT Node 140'	'ICT Node 141'	'ICT Node 142'	'ICT Node 143'	'ICT Node 144'};
+ICT_mesh = graph(source,target);
+A = adjacency(ICT_mesh);
+adjA =  zeros(length(A));
+
+M = numnodes(ICT_mesh); %Calculation of number of nodes in the graph
+
+L_random = log(n1+n2)/log(2*M/(n1+n2)); %Calculation of random network Characteristic Path Length
+Gamma_random = 2*M/((n1+n2)^2); %Calculation of random network Characteristic Path Length
+    
+
+
+for i = 1:1000
+    for i_1 = 1:56
+        a1 = source(1,i_1);
+        b1 = target(1,i_1);
+        v1 = normrnd(mean1,stddev1);
+        adjA(a1,b1) = v1;
+        adjA(b1,a1) = v1;
+    end
+    
+    for i_6 = 57:168
+        a2 = source(1,i_6);
+        b2 = target(1,i_6);
+        v2 = normrnd(mean2,stddev2);
+        adjA(a2,b2) = v2;
+        adjA(b2,a2) = v2;
+    end
+    
+    for i_3 = 169:207
+        a3 = source(1,i_3);
+        b3 = target(1,i_3);
+        v3 = normrnd(mean3,stddev3);
+        adjA(a3,b3) = v3;
+        adjA(b3,a3) = v3;
+    end
+    
+    for i_4 = 208:220
+        a4 = source(1,i_4);
+        b4 = target(1,i_4);
+        v4 = normrnd(mean4,stddev4);
+        adjA(a4,b4) = v4;
+        adjA(b4,a4) = v4;
+    end
+    
+    for i_5 = 222
+        a5 = source(1,i_5);
+        b5 = target(1,i_5);
+        v5 = normrnd(mean5,stddev5);
+        adjA(a5,b5) = v5;
+        adjA(b5,a5) = v5;
+    end
+    
+   
+   
+    sparseA = sparse(adjA);
+    ccfs(:,i) = clustering_coefficients(sparseA);
+    ccfs_mesh(:,i) = mean(ccfs(:,i)); %Calculation of Clustering Coefficient
+    
+    
+    
+    
+    G = graph(adjA);
+    adjA_drop = adjA;
+    
+    for m = 1:M
+        for n = 1:M
+            [P,d] = shortestpath(G,m,n);
+            d_tot(m,n)=d;
+        end
+    end
+    
+    
+    sum_row = sum(d_tot,2);
+    sum_tot = sum(sum_row);
+    L = sum_tot/(rows*(rows-1));
+    
+    for numnode = 1:(n1+n2)
+        adjA_drop(numnode,:) = 0;
+        adjA_drop(:,numnode) = 0;
+        sparseA_drop = sparse(adjA_drop);
+        ccfs_drop(numnode,1) = clustering_coefficients(sparseA_drop);%Calculation of Clustering Coefficient after node removal
+        G_drop = graph(adjA_drop);
+        for m = 1:rows
+            for n = 1:columns
+                [P_drop,d_drop] = shortestpath(G_drop,m,n);
+                d_tot_drop(m,n)=d_drop;
+            end
+        end
+        sum_row_drop = sum(d_tot_drop,2);
+        sum_tot_drop = sum(sum_row_drop);
+        L_drop = sum_tot_drop/(rows*(rows-1));
+        Delta_L(numnode,1) = (L-L_drop)/L;
+        
+        SWNS_drop(numnode,:) = (ccfs_drop(numnode,1)/Gamma_random)/(L_drop
+    end
+    L_tot(:,i)= L;
+    Delta_L(:,i) = Delta_L;
+    ccfs_mesh_drop(:,i) = mean(ccfs_drop(:,i));%Calculation of Clustering Coefficient drop for all nodes and 1000 simulations
+    
+    SWNS(:,i) = (ccfs_mesh(1,i)/Gamma_random)/(L/L_random); %Calculation of Small World-ness
+    
+end
+
+
+
+
+
+
+
+%Star Topology
+n3 = 56;
+n4 = 88;
+
+source_s = [1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39	40	41	42	43	44	45	46	47	48	49	50	51	52	53	54	55	56	59	59	60	60	78	78	80	80	64	64	89	89	106	106	63	63	81	81	108	108	102	102	103	103	110	110	111	111	97	97	100	100	101	101	112	112	68	68	69	69	109	109	91	91	92	92	107	107	61	61	77	77	79	79	70	70	57	57	58	58	73	73	76	76	66	66	67	67	83	83	85	85	86	86	88	88	62	62	65	65	82	82	84	84	87	87	90	90	93	93	94	94	104	104	105	105	95	95	96	96	98	98	99	99	72	72	74	74	75	75	71	71	113	115	116	117	117	118	119	120	120	121	123	133	135	136	138	140	113	114	115	116	117	118	119	120	121	122	123	124	125	126	127	128	129	130	131	132	133	134	135	136	137	138	139	140	141	142	143];
+target_s = [57	58	59	60	61	62	63	64	65	66	67	68	69	70	71	72	73	74	75	76	77	78	79	80	81	82	83	84	85	86	87	88	89	90	91	92	93	94	95	96	97	98	99	100	101	102	103	104	105	106	107	108	109	110	111	112	143	115	143	126	115	126	115	126	119	144	119	131	119	131	118	144	118	127	118	127	140	141	140	141	140	141	140	141	138	139	138	139	138	139	138	139	121	144	144	122	121	122	133	134	133	134	133	134	116	143	143	125	116	125	124	125	113	143	143	114	143	113	143	114	120	144	144	129	120	129	129	130	129	130	129	130	117	143	143	128	117	128	128	132	128	132	128	132	135	142	135	142	135	142	135	142	136	137	136	137	136	137	136	137	123	144	123	144	144	124	123	144	114	126	125	128	132	127	131	129	130	122	124	134	142	137	139	141	143	143	143	143	143	144	144	144	144	144	144	144	143	143	144	143	143	144	144	143	144	144	143	143	143	143	143	144	144	143	144];
+NodeNames = {'EPS Node 1'	'EPS Node 2'	'EPS Node 3'	'EPS Node 4'	'EPS Node 5'	'EPS Node 6'	'EPS Node 7'	'EPS Node 8'	'EPS Node 9'	'EPS Node 10'	'EPS Node 11'	'EPS Node 12'	'EPS Node 13'	'EPS Node 14'	'EPS Node 15'	'EPS Node 16'	'EPS Node 17'	'EPS Node 18'	'EPS Node 19'	'EPS Node 20'	'EPS Node 21'	'EPS Node 22'	'EPS Node 23'	'EPS Node 24'	'EPS Node 25'	'EPS Node 26'	'EPS Node 27'	'EPS Node 28'	'EPS Node 29'	'EPS Node 30'	'EPS Node 31'	'EPS Node 32'	'EPS Node 33'	'EPS Node 34'	'EPS Node 35'	'EPS Node 36'	'EPS Node 37'	'EPS Node 38'	'EPS Node 39'	'EPS Node 40'	'EPS Node 41'	'EPS Node 42'	'EPS Node 43'	'EPS Node 44'	'EPS Node 45'	'EPS Node 46'	'EPS Node 47'	'EPS Node 48'	'EPS Node 49'	'EPS Node 50'	'EPS Node 51'	'EPS Node 52'	'EPS Node 53'	'EPS Node 54'	'EPS Node 55'	'EPS Node 56'	'ICT Node 57'	'ICT Node 58'	'ICT Node 59'	'ICT Node 60'	'ICT Node 61'	'ICT Node 62'	'ICT Node 63'	'ICT Node 64'	'ICT Node 65'	'ICT Node 66'	'ICT Node 67'	'ICT Node 68'	'ICT Node 69'	'ICT Node 70'	'ICT Node 71'	'ICT Node 72'	'ICT Node 73'	'ICT Node 74'	'ICT Node 75'	'ICT Node 76'	'ICT Node 77'	'ICT Node 78'	'ICT Node 79'	'ICT Node 80'	'ICT Node 81'	'ICT Node 82'	'ICT Node 83'	'ICT Node 84'	'ICT Node 85'	'ICT Node 86'	'ICT Node 87'	'ICT Node 88'	'ICT Node 89'	'ICT Node 90'	'ICT Node 91'	'ICT Node 92'	'ICT Node 93'	'ICT Node 94'	'ICT Node 95'	'ICT Node 96'	'ICT Node 97'	'ICT Node 98'	'ICT Node 99'	'ICT Node 100'	'ICT Node 101'	'ICT Node 102'	'ICT Node 103'	'ICT Node 104'	'ICT Node 105'	'ICT Node 106'	'ICT Node 107'	'ICT Node 108'	'ICT Node 109'	'ICT Node 110'	'ICT Node 111'	'ICT Node 112'	'ICT Node 113'	'ICT Node 114'	'ICT Node 115'	'ICT Node 116'	'ICT Node 117'	'ICT Node 118'	'ICT Node 119'	'ICT Node 120'	'ICT Node 121'	'ICT Node 122'	'ICT Node 123'	'ICT Node 124'	'ICT Node 125'	'ICT Node 126'	'ICT Node 127'	'ICT Node 128'	'ICT Node 129'	'ICT Node 130'	'ICT Node 131'	'ICT Node 132'	'ICT Node 133'	'ICT Node 134'	'ICT Node 135'	'ICT Node 136'	'ICT Node 137'	'ICT Node 138'	'ICT Node 139'	'ICT Node 140'	'ICT Node 141'	'ICT Node 142'	'ICT Node 143'	'ICT Node 144'};
+ICT_star = graph(source_s,target_s);
+A_s = adjacency(ICT_star);
+adjA_s =  zeros(length(A_s));
+
+M_s = numnodes(ICT_star); %Calculation of number of nodes in the graph
+L_random_star = log(n3+n4)/log(2*M_s/(n3+n4)); %Calculation of random network Characteristic Path Length
+Gamma_random_star = 2*M_s/((n3+n4)^2); %Calculation of random network Characteristic Path Length
+
+
+
+for i_s = 1:1000
+    for i_1_s = 1:56
+        a1_s = source_s(1,i_1_s);
+        b1_s = target_s(1,i_1_s);
+        v1_s = normrnd(mean1,stddev1);
+        adjA_s(a1_s,b1_s) = v1_s;
+        adjA_s(b1_s,a1_s) = v1_s;
+    end
+    
+    for i_6_s = 57:168
+        a2_s = source_s(1,i_6_s);
+        b2_s = target_s(1,i_6_s);
+        v2_s = normrnd(mean2,stddev2);
+        adjA_s(a2_s,b2_s) = v2_s;
+        adjA_s(b2_s,a2_s) = v2_s;
+    end
+    
+    for i_3_s = 169:184
+        a3_s = source_s(1,i_3_s);
+        b3_s = target_s(1,i_3_s);
+        v3_s = normrnd(mean3,stddev3);
+        adjA_s(a3_s,b3_s) = v3_s;
+        adjA_s(b3_s,a3_s) = v3_s;
+    end
+    
+    for i_4_s = 185:214
+        a4_s = source_s(1,i_4_s);
+        b4_s = target_s(1,i_4_s);
+        v4_s = normrnd(mean4,stddev4);
+        adjA_s(a4_s,b4_s) = v4_s;
+        adjA_s(b4_s,a4_s) = v4_s;
+    end
+    
+    for i_5_s = 215
+        a5_s = source_s(1,i_5_s);
+        b5_s = target_s(1,i_5_s);
+        v5_s = normrnd(mean5,stddev5);
+        adjA_s(a5_s,b5_s) = v5_s;
+        adjA_s(b5_s,a5_s) = v5_s;
+    end
+    
+    
+    sparseA_s = sparse(adjA_s);
+    ccfs_s(:,i_s) = clustering_coefficients(sparseA_s);
+    ccfs_star(:,i) = mean(ccfs_s(:,i_s)); %Calculation of Clustering Coefficient
+    
+    
+    G_s = graph(adjA_s);
+    adjA_drop_s = adjA_s;
+    
+    for m_s = 1:M_s
+        for n_s = 1:M_s
+            [P_s,d_s] = shortestpath(G_s,m_s,n_s);
+            d_tot_s(m_s,n_s)=d_s;
+        end
+    end
+    
+    sum_row_s = sum(d_tot_s,2);
+    sum_tot_s = sum(sum_row_s);
+    L_s = sum_tot_s/(rows_s*(rows_s-1));
+    for numnode_s = 1:(n3+n4)
+        adjA_drop_s(numnode_s,:) = 0;
+        adjA_drop_s(:,numnode_s) = 0;
+        sparseA_drop_s = sparse(adjA_drop_s);
+        ccfs_drop_s(numnode_s,1) = clustering_coefficients(sparseA_drop_s);%Calculation of Clustering Coefficient drop
+        G_drop_s = graph(adjA_drop_s);
+        for m_s = 1:rows_s
+            for n_s = 1:columns_s
+                [P_drop_s,d_drop_s] = shortestpath(G_drop_s,m_s,n_s);
+                d_tot_drop_s(m_s,n_s)=d_drop_s;
+            end
+        end
+        sum_row_drop_s = sum(d_tot_drop_s,2);
+        sum_tot_drop_s = sum(sum_row_drop_s);
+        L_drop_s = sum_tot_drop_s/(rows_s*(rows_s-1));
+        Delta_L_s(numnode_s,1) = (L_s-L_drop_s)/L_s;
+    end
+    L_tot_s = L_s (:,i_s);
+    Delta_L_s(:,i_s) = Delta_L_s;
+    ccfs_mesh_drop_s(:,i_s) = mean(ccfs_drop_s(:,i_s));%Calculation of Clustering Coefficient drop for all nodes and 1000 simulations
+end
+
+
