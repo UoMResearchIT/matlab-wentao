@@ -19,60 +19,58 @@ source_miu1 = source_miu1_orig;
 target_miu1 = target_miu1_orig;
 
 for col = 1 : 1 : 1000
-	x = data(1:232, col);
+    x = data(1:232, col);
     for i = 1:232
         if x(i,1) < 1 && x(i,1) > 0
             x(i,1) = 1;
-        else if x(i,1) < -1
-                s_i = source_miu1(1,i);
-                t_i = target_miu1(1,i);
-                source_miu1(1,i) = t_i;
-                target_miu1(1,i) = s_i;
-                x(i,1) = -x(i,1);
-            else if x(i,1) > -1 && x(i,1) < 0
-                    s_j = source_miu1(1,i);
-                    t_j = target_miu1(1,i);
-                    source_miu1(1,i) = t_j;
-                    target_miu1(1,i) = s_j;
-                    x(i,1) = 1;
-                end
-            end
+        elseif x(i,1) < -1
+            s_i = source_miu1(1,i);
+            t_i = target_miu1(1,i);
+            source_miu1(1,i) = t_i;
+            target_miu1(1,i) = s_i;
+            x(i,1) = -x(i,1);
+        elseif x(i,1) > -1 && x(i,1) < 0
+            s_j = source_miu1(1,i);
+            t_j = target_miu1(1,i);
+            source_miu1(1,i) = t_j;
+            target_miu1(1,i) = s_j;
+            x(i,1) = 1;
         end
     end
-    G_miu1 = graph(source_miu1, target_miu1, 1./x);
-    source_miu1 = source_miu1_orig;
-    target_miu1 = target_miu1_orig;
-    
-    nn = numnodes(G_miu1);
-    [s,t] = findedge(G_miu1);
-    A = sparse(s,t,G_miu1.Edges.Weight,nn,nn);
-    A = (A+A') - eye(size(A,1)).*diag(A);
-    ccfs(:,col) = clustering_coefficients(A);
-
-    ccfs_miu1(:,col) = mean(ccfs(:,col)); %Calculation of Clustering Coefficient
-    
-    
-      
-    d_miu1 = distances(G_miu1);
-    [L_miu1,efficiency,ecc,radius,diameter] = charpath(d_miu1);%Calculation of Characteristic Path Length
-
-    % FIRST SPLIT
-    
-    adjA_drop = A;
-  
-    for numnode = 1:nn
-        adjA_drop(numnode,:) = 0;
-        adjA_drop(:,numnode) = 0;
-        % Currently find the following line caused a problem!
-        %ccfs_drop = clustering_coefficients(adjA_drop);%Calculation of Clustering Coefficient after node removal
-        %ccfs_drop_mean(1,col) = mean(ccfs_drop);
-        G_miu1_drop = graph(adjA_drop);
-        d_miu1_drop = distances(G_miu1_drop);
-        %[L_miu1_drop,efficiency,ecc,radius,diameter] = charpath(d_miu1_drop); %Calculation of Characteristic Path Length after node removal
-        %Delta_L(numnode,col) = (L_miu1-L_miu1_drop)/L_miu1; %Calculation of Characteristic Path Length drop
-        %SWNS_drop_miu1(numnode,col) = (ccfs_drop_mean(1,col)/Gamma_random)/(L_miu1_drop/L_random); %Calculation of Small World-ness after node removal
-    end
-    %SWNS_miu1(:,col) = (ccfs_mesh(1,col)/Gamma_random)/(L_miu1/L_random); %Calculation of Small World-ness
-    %SWNS_drop_tot_miu1(:,col) = SWNS_drop_miu1; %Calculation of total Small World-ness after node removal
 end
-    
+
+G_miu1 = graph(source_miu1, target_miu1, 1./x);
+source_miu1 = source_miu1_orig;
+target_miu1 = target_miu1_orig;
+
+nn = numnodes(G_miu1);
+[s,t] = findedge(G_miu1);
+A = sparse(s,t,G_miu1.Edges.Weight,nn,nn);
+A = (A+A') - eye(size(A,1)).*diag(A);
+ccfs(:,col) = clustering_coefficients(A);
+
+ccfs_miu1(:,col) = mean(ccfs(:,col)); %Calculation of Clustering Coefficient
+
+
+
+d_miu1 = distances(G_miu1);
+[L_miu1,efficiency,ecc,radius,diameter] = charpath(d_miu1);%Calculation of Characteristic Path Length
+
+% FIRST SPLIT
+
+adjA_drop = A;
+
+for numnode = 1:nn
+    adjA_drop(numnode,:) = 0;
+    adjA_drop(:,numnode) = 0;
+    % Currently find the following line caused a problem!
+    %ccfs_drop = clustering_coefficients(adjA_drop);%Calculation of Clustering Coefficient after node removal
+    %ccfs_drop_mean(1,col) = mean(ccfs_drop);
+    G_miu1_drop = graph(adjA_drop);
+    d_miu1_drop = distances(G_miu1_drop);
+    %[L_miu1_drop,efficiency,ecc,radius,diameter] = charpath(d_miu1_drop); %Calculation of Characteristic Path Length after node removal
+    %Delta_L(numnode,col) = (L_miu1-L_miu1_drop)/L_miu1; %Calculation of Characteristic Path Length drop
+    %SWNS_drop_miu1(numnode,col) = (ccfs_drop_mean(1,col)/Gamma_random)/(L_miu1_drop/L_random); %Calculation of Small World-ness after node removal
+end
+%SWNS_miu1(:,col) = (ccfs_mesh(1,col)/Gamma_random)/(L_miu1/L_random); %Calculation of Small World-ness
+%SWNS_drop_tot_miu1(:,col) = SWNS_drop_miu1; %Calculation of total Small World-ness after node removal
